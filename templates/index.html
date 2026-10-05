@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QR Code Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <main class="layout">
+    <section class="panel">
+      <h1>Make a QR code</h1>
+      <p class="intro">Pick what you want to share, then download it as a PNG.</p>
+
+      <div class="tabs" role="tablist" aria-label="Content type">
+        <button class="tab active" role="tab" aria-selected="true" data-type="text">Text</button>
+        <button class="tab" role="tab" aria-selected="false" data-type="url">Link</button>
+        <button class="tab" role="tab" aria-selected="false" data-type="contact">Contact</button>
+      </div>
+
+      <div id="form-text" class="fields">
+        <label for="content">Your text or link</label>
+        <textarea id="content" rows="4" maxlength="1000" placeholder="Type or paste anything"></textarea>
+      </div>
+
+      <div id="form-contact" class="fields" hidden>
+        <label for="c-name">Full name</label>
+        <input id="c-name" type="text" autocomplete="off">
+        <label for="c-phone">Phone</label>
+        <input id="c-phone" type="tel" autocomplete="off">
+        <label for="c-email">Email</label>
+        <input id="c-email" type="email" autocomplete="off">
+        <label for="c-org">Organization <span class="optional">(optional)</span></label>
+        <input id="c-org" type="text" autocomplete="off">
+      </div>
+
+      <div class="size-row">
+        <label for="size">Size</label>
+        <input id="size" type="range" min="{{ min_size }}" max="{{ max_size }}" step="32" value="320">
+        <output id="size-label">320 px</output>
+      </div>
+
+      <button id="generate" class="primary">Generate QR code</button>
+      <p id="error" class="error" role="alert" hidden></p>
+    </section>
+
+    <section class="result" aria-live="polite">
+      <div id="placeholder" class="placeholder">Your QR code will show up here.</div>
+      <img id="qr-image" alt="Generated QR code" hidden>
+      <a id="download" class="download" hidden download="qr-code.png">Download PNG</a>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
