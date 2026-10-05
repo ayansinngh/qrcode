@@ -15,7 +15,7 @@ source venv/bin/activate      # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 python app.py
 ```
-Open qrcode-7wt15flzu-ayansinnghs-projects.vercel.app
+Open https://vercel.com/ayansinnghs-projects/qrcode
 
 ## Project layout
 ```
